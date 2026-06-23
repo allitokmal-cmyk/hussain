@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper validation
+    function isValidId(id) {
+      return id is string && id.size() <= 128;
+    }
+
+    // Default catch-all denies undocumented collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Explicit collections matching application entities
+    match /serviceReports/{id} {
+      allow read, write: if isValidId(id);
+    }
+
+    match /engineeringReports/{id} {
+      allow read, write: if isValidId(id);
+    }
+
+    match /chemicalInventory/{id} {
+      allow read, write: if isValidId(id);
+    }
+
+    match /locations/{id} {
+      allow read, write: if isValidId(id);
+    }
+
+    match /supervisors/{id} {
+      allow read, write: if isValidId(id);
+    }
+
+    match /branding/{id} {
+      allow read, write: if isValidId(id);
+    }
+
+    match /genericStore/{id} {
+      allow read, write: if isValidId(id);
+    }
+
+    match /users/{id} {
+      allow read, write: if isValidId(id);
+    }
+  }
+}

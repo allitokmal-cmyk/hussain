@@ -1,0 +1,124 @@
+{
+  "entities": {
+    "ServiceReport": {
+      "title": "Service Report",
+      "description": "Standard Service Report entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "facilityName": { "type": "string" },
+        "clientId": { "type": "string" },
+        "ticketNo": { "type": "string" },
+        "contractNo": { "type": "string" },
+        "branchName": { "type": "string" },
+        "facilityType": { "type": "string" },
+        "emirate": { "type": "string" },
+        "address": { "type": "string" },
+        "gpsCoordinates": { "type": "string" },
+        "contactPerson": { "type": "string" },
+        "mobile": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "email": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "validity": { "type": "string" },
+        "dateOfOperation": { "type": "string" },
+        "startTime": { "type": "string" },
+        "endTime": { "type": "string" },
+        "duration": { "type": "string" },
+        "categories": { "type": "array" },
+        "areas": { "type": "array" },
+        "reportText": { "type": "string" },
+        "workStatus": { "type": "string" },
+        "methods": { "type": "array" },
+        "chemicals": { "type": "array" },
+        "infestation": { "type": "object" },
+        "sanitation": { "type": "string" },
+        "proofing": { "type": "string" },
+        "recommendations": { "type": "array" },
+        "billing": { "type": "object" },
+        "technicians": { "type": "array" },
+        "signatures": { "type": "object" },
+        "media": { "type": "object" }
+      },
+      "required": ["id"]
+    },
+    "EngineeringReport": {
+      "title": "Engineering Report",
+      "description": "A complex engineering report",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reportNo": { "type": "string" },
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "facilityName": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "emirate": { "type": "string" },
+        "address": { "type": "string" },
+        "reportType": { "type": "string" },
+        "treatmentType": { "type": "array" },
+        "photos": { "type": "array" },
+        "recommendationPhotos": { "type": "array" },
+        "customWorkDetails": { "type": "array" },
+        "recommendationText": { "type": "string" },
+        "treatmentCorrectiveText": { "type": "string" },
+        "operationalLogsText": { "type": "string" },
+        "signatureClient": { "type": "string" },
+        "signatureEngineer": { "type": "string" }
+      },
+      "required": ["id"]
+    },
+    "ChemicalInventoryItem": {
+      "title": "Chemical Inventory Item",
+      "description": "Stock of chemical",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "dilution": { "type": "string" },
+        "batch": { "type": "string" },
+        "expiry": { "type": "string" },
+        "stock": { "type": "number" },
+        "unit": { "type": "string" },
+        "alertThreshold": { "type": "number" }
+      },
+      "required": ["name"]
+    },
+    "ChemicalRequisition": {
+      "title": "Chemical Requisition",
+      "description": "Saved chemical request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "targetUser": { "type": "string" },
+        "department": { "type": "string" },
+        "requester": { "type": "string" },
+        "items": { "type": "array" },
+        "signatureReq": { "type": "string" },
+        "signatureApp": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id"]
+    }
+  },
+  "firestore": {
+    "/serviceReports/{reportId}": {
+      "schema": { "$ref": "#/entities/ServiceReport" },
+      "description": "Stores all Service Reports created in the system."
+    },
+    "/engineeringReports/{reportId}": {
+      "schema": { "$ref": "#/entities/EngineeringReport" },
+      "description": "Stores all Engineering Reports created in the system."
+    },
+    "/chemicalInventory/{itemName}": {
+      "schema": { "$ref": "#/entities/ChemicalInventoryItem" },
+      "description": "Global chemical inventory."
+    },
+    "/chemicalRequisitions/{requisitionId}": {
+      "schema": { "$ref": "#/entities/ChemicalRequisition" },
+      "description": "Requisition logs for chemicals."
+    }
+  }
+}
